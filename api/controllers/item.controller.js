@@ -39,7 +39,7 @@ module.exports = {
   update_item: async (req, res) => {
     try {
       const { id, name, price, quantity, description } = req.body;
-      const result = await Item.updateOne(
+      const result = await Item.findOneAndUpdate(
         { _id: id },
         {
           name: name,

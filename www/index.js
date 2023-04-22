@@ -2,6 +2,7 @@
 let endpoint = "http://localhost:3000";
 
 $(document).ready(function () {
+  var idUpdate = "";
   renderTable();
 });
 
@@ -93,12 +94,21 @@ const openModalUpdate = (event, _id) => {
       document.getElementById("priceUpdate").value = result.price;
       document.getElementById("quantityUpdate").value = result.quantity;
       document.getElementById("descriptionUpdate").innerHTML = result.description;
+      idUpdate = _id;
       const updateBtn = document.getElementById("updateBtn");
       updateBtn.addEventListener("click", () => {
-        updateItem(_id);
+        updateItem(idUpdate);
       });
       $("#updateModal").modal("show");
     });
+};
+
+const closeModalUpdate = () => {
+  const updateBtn = document.getElementById("updateBtn");
+  updateBtn.removeEventListener("click", () => {
+    updateItem(idUpdate);
+  });
+  idUpdate = "";
 };
 
 const updateItem = (_id) => {
@@ -130,6 +140,7 @@ const updateItem = (_id) => {
     .then((response) => response.json())
     .then((result) => {
       $("#updateModal").modal("hide");
+      closeModalUpdate();
       renderTable();
     })
     .catch((error) => {
