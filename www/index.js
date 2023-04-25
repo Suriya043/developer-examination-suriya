@@ -93,7 +93,7 @@ const openModalUpdate = (event, _id) => {
       document.getElementById("nameUpdate").value = result.name;
       document.getElementById("priceUpdate").value = result.price;
       document.getElementById("quantityUpdate").value = result.quantity;
-      document.getElementById("descriptionUpdate").innerHTML = result.description;
+      document.getElementById("descriptionUpdate").value = result.description;
       idUpdate = _id;
       const updateBtn = document.getElementById("updateBtn");
       updateBtn.addEventListener("click", () => {
